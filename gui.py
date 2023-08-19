@@ -3,13 +3,15 @@ import tkinter as tk
 class ImageRec:
     def __init__(self, root):
         self.root = root
+        # Create canvas:
         self.canvas = tk.Canvas(root, width=280, height=280, bg='white')
         self.canvas.pack()
+        # Bind LMB movement to canvas, call draw method:
         self.canvas.bind("<B1-Motion>", self.draw)
 
     def draw(self, event):
         x, y = event.x, event.y
-        self.canvas.create_oval(x, y, x+10, y+10, fill='black')
+        self.canvas.create_oval(x+5, y+5, x-5, y-5, fill='black')
 
 root = tk.Tk()
 
