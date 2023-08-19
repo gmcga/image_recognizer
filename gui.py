@@ -1,4 +1,7 @@
 import tkinter as tk
+from tkinter import filedialog
+from PIL import Image, ImageDraw
+
 
 class ImageRec:
     def __init__(self, root):
@@ -25,13 +28,38 @@ class ImageRec:
         self.clear_button = tk.Button(root, text="Clear Canvas", command=self.clear_canvas)
         self.clear_button.pack()
 
+        # Save button
+        self.save_button = tk.Button(root, text="Save Image", command=self.save_image)
+        self.save_button.pack()
+
+        # Initialize PIL image for drawing
+        self.image = Image.new("RGB", (280, 280), "white")
+        self.draw = ImageDraw.Draw(self.image)
+
     def clear_canvas(self):
         self.canvas.delete("all")
 
-    def draw(self, event): # Creates oval at cursor location
+    def draw(self, event):
+        RADIUS = 5 
+        # Draw on tk image
         x, y = event.x, event.y
-        self.canvas.create_oval(x+5, y+5, x-5, y-5, fill="black")
+        self.canvas.create_oval(x + RADIUS, y + RADIUS, x - RADIUS, y - RADIUS, fill="black")
 
+        # Draw on the PIL image
+        pil_x0 = x - RADIUS
+        pil_y0 = y - RADIUS
+        pil_x1 = x + RADIUS
+        pil_y1 = y + RADIUS
+        self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill="black")
+
+
+    def save_image(self):
+        # Ask user for file name and location to save
+        file_path = tk.filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
+
+        if file_path:
+            # Save the PIL image as a file
+            self.image.save(file_path)
 
 def main():
 
