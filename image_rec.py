@@ -26,6 +26,8 @@ class Net(nn.Module):
         x = self.fc1(x)
         return x
 
+
+
 # Define dataset and dataloader
 class CustomDataset(Dataset):
     def __init__(self, data_folder, transform=None):
