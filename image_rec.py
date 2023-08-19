@@ -60,7 +60,7 @@ class CustomDataset(Dataset):
 
 
 
-def train_save_model(n_iterations, data_folder = "./fig", model_path="model.pth"):
+def train_save_model(n_iterations, data_folder = "./fig_train", model_path="model.pth"):
 
     # Set up data transformations
     transform = tv.transforms.Compose([
@@ -130,4 +130,4 @@ def load_and_predict(image_path, model_path="model.pth"):
 
 if __name__ == "__main__":
     train_save_model(100)
-    load_and_predict("./test/test1.png")
+    print(load_and_predict("./fig_test/test1.png") )
