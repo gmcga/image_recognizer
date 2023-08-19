@@ -129,6 +129,6 @@ def load_and_predict(image_path, model_path="model.pth"):
 
 
 if __name__ == "__main__":
-    # train_save_model(100)
+    train_save_model(100)
     for i in range(10):
         print(f"Real: {i}, Guess:", load_and_predict(f"./fig_test/test{i}.png"))
