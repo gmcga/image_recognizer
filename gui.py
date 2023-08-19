@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageDraw
+import datetime
 
 
 class ImageRec:
@@ -24,13 +25,21 @@ class ImageRec:
         # Bind LMB movement to canvas, call draw method:
         self.canvas.bind("<B1-Motion>", self.draw)
 
+        # Button frame to hold the buttons
+        button_frame = tk.Frame(root)
+        button_frame.pack(pady= 10)
+
         # Clear button
-        self.clear_button = tk.Button(root, text="Clear Canvas", command=self.clear_canvas)
-        self.clear_button.pack()
+        self.clear_button = tk.Button(button_frame, text="Clear Canvas", command=self.clear_canvas, width=15, height=3)
+        self.clear_button.pack(side="left", padx=5)
 
         # Save button
-        self.save_button = tk.Button(root, text="Save Image", command=self.save_image)
-        self.save_button.pack()
+        self.save_button = tk.Button(button_frame, text="Save Image", command=self.save_image, width=15, height=3)
+        self.save_button.pack(side="left", padx=5)
+
+        # Guess button
+        self.guess_button = tk.Button(button_frame, text="Guess!", command=self.guess_image, width=15, height=3)
+        self.guess_button.pack(side="left", padx=5)
 
         # Initialize PIL image for drawing
         self.image = Image.new("RGB", (280, 280), "white")
@@ -63,6 +72,8 @@ class ImageRec:
             # Save the PIL image as a file
             self.image.save(file_path)
 
+    def guess_image(self):
+        pass
 def main():
 
     root = tk.Tk()
