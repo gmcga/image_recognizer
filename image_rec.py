@@ -128,19 +128,45 @@ def load_and_predict(image_path, model_path="model.pth"):
     return predicted_class
 
 
-if __name__ == "__main__":
 
+
+
+def play_sound():
+    import winsound
+    duration = 100 #ms
+    frequency = 440
+    for _ in range(5):
+        winsound.beep(frequency, duration,)
+
+
+
+
+
+def main():
 
     train_save_model(100)
 
     correct = 0
 
+    string = ""
+
     for i in range(10):
         for a in ["", "a"]:
             guess = load_and_predict(f"./fig_test/test{i}{a}.png")
 
-            print(f"Real: {i}{a}, Guess: {guess}{a}", )
+            string += f"Real: {i}{a}, Guess: {guess}{a}"
 
             correct += int(i == guess)
 
-    print(f"{correct} / 20")
+    string += f"{correct} / 20"
+
+    print(string)
+
+    with open("model_train.txt") as file:
+        file.write(string)
+
+
+
+if __name__ == "__main__":
+    main()
+    play_sound()
