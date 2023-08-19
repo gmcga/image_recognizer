@@ -1,6 +1,6 @@
 # IMPORTS
 
-import image_rec as ir
+# import image_rec as ir
 import gui
 
 # FUNCTION DEFINITIONS
