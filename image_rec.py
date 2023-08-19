@@ -131,7 +131,7 @@ def load_and_predict(image_path, model_path="model.pth"):
 if __name__ == "__main__":
 
 
-    train_save_model(150)
+    train_save_model(100)
 
     correct = 0
 
