@@ -1,6 +1,7 @@
 # IMPORTS
 
-from image_rec import *
+import image_rec as ir
+import gui
 
 # FUNCTION DEFINITIONS
 
@@ -9,7 +10,8 @@ from image_rec import *
 # SCRIPT
 
 def main():
-    return
+    
+    gui.main()
 
 if __name__ == "__main__":
     main()

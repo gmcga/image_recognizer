@@ -13,10 +13,13 @@ class ImageRec:
         x, y = event.x, event.y
         self.canvas.create_oval(x+5, y+5, x-5, y-5, fill='black')
 
-root = tk.Tk()
 
-app = ImageRec(root)
+def main():
 
-root.mainloop()
+    root = tk.Tk()
+
+    app = ImageRec(root)
+
+    root.mainloop()
 
 
