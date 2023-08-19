@@ -9,6 +9,8 @@ import torchvision as tv
 from torchvision.datasets import ImageFolder
 from torchvision.io import read_image
 
+from PIL import Image
+
 
 
 
@@ -58,7 +60,7 @@ class CustomDataset(Dataset):
 
 
 
-def main():
+def train_save_model(model_path, data_folder = 'fig'):
 
     # Set up data transformations
     transform = tv.transforms.Compose([
@@ -68,7 +70,6 @@ def main():
     ])
 
     # Create dataset and dataloader
-    data_folder = 'fig'
     dataset = CustomDataset(data_folder, transform=transform)
     dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
 
@@ -93,7 +94,38 @@ def main():
 
     print("Finished Training")
 
+    # Save the trained model's state dictionary
+    model_path = 'path_to_saved_model.pth'
+    torch.save(net.state_dict(), model_path)
+    print(f"Model saved to {model_path}")
+    
+    return
+
+
+
+# Load the trained model and make predictions
+def load_and_predict(image_path, model_path):
+    net = Net(10)  # Assuming you know the number of classes
+    net.load_state_dict(torch.load(model_path))
+    net.eval()  # Set the model to evaluation mode
+
+    transform = tv.transforms.Compose([
+        tv.transforms.Resize((128, 128)),
+        tv.transforms.ToTensor(),
+        tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+    ])
+
+    image = Image.open(image_path)
+    image_tensor = transform(image)
+    image_tensor = image_tensor.unsqueeze(0)  # Add batch dimension
+
+    with torch.no_grad():
+        outputs = net(image_tensor)
+        _, predicted = torch.max(outputs.data, 1)
+
+    predicted_class = predicted.item()
+    return predicted_class
 
 
 if __name__ == "__main__":
-    main()
+    train_save_model()
