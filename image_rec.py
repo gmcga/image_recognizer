@@ -51,23 +51,25 @@ class CustomDataset(Dataset):
     def __getitem__(self, idx):
         img_path = self.image_paths[idx]
         label = self.labels[idx]
-        image = read_image(img_path)  # Use torchvision's read_image to load images
+        image = Image.open(img_path)  # Open the image with PIL
 
         if self.transform:
-            image = self.transform(image)
+            image = self.transform(image)  # Apply the transformation
 
         return image, label
 
 
 
-def train_save_model(model_path, data_folder = 'fig'):
+def train_save_model(n_iterations, data_folder = "./fig", model_path="model.pth"):
 
     # Set up data transformations
     transform = tv.transforms.Compose([
         tv.transforms.Resize((128, 128)),
+        tv.transforms.Grayscale(num_output_channels=3),  # Convert to RGB
         tv.transforms.ToTensor(),
         tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
     ])
+
 
     # Create dataset and dataloader
     dataset = CustomDataset(data_folder, transform=transform)
@@ -80,7 +82,7 @@ def train_save_model(model_path, data_folder = 'fig'):
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
     # Training loop
-    for epoch in range(10):  # Adjust the number of epochs as needed
+    for epoch in range(n_iterations):  # Adjust the number of epochs as needed
         running_loss = 0.0
         for i, data in enumerate(dataloader, 0):
             inputs, labels = data
@@ -95,7 +97,6 @@ def train_save_model(model_path, data_folder = 'fig'):
     print("Finished Training")
 
     # Save the trained model's state dictionary
-    model_path = 'path_to_saved_model.pth'
     torch.save(net.state_dict(), model_path)
     print(f"Model saved to {model_path}")
     
@@ -104,7 +105,7 @@ def train_save_model(model_path, data_folder = 'fig'):
 
 
 # Load the trained model and make predictions
-def load_and_predict(image_path, model_path):
+def load_and_predict(image_path, model_path="model.pth"):
     net = Net(10)  # Assuming you know the number of classes
     net.load_state_dict(torch.load(model_path))
     net.eval()  # Set the model to evaluation mode
@@ -128,4 +129,5 @@ def load_and_predict(image_path, model_path):
 
 
 if __name__ == "__main__":
-    train_save_model()
+    train_save_model(100)
+    load_and_predict("./test/test1.png")
