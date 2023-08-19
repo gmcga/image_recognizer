@@ -139,7 +139,7 @@ if __name__ == "__main__":
 
     for i in range(10):
 
-        guess = load_and_predict(f"./fig_test/test{i}.png")
+        guess = load_and_predict(f"./fig_test/test{i}a.png")
 
         print(f"Real: {i}, Guess: {guess}", )
 
