@@ -37,7 +37,9 @@ class ImageRec:
         self.draw = ImageDraw.Draw(self.image)
 
     def clear_canvas(self):
-        self.canvas.delete("all")
+        self.canvas.delete("all") # Clear tkinter canvas
+        self.image = Image.new("RGB", (280, 280), "white")  # Clear PIL image
+        self.draw = ImageDraw.Draw(self.image)  # Create a new ImageDraw object
 
     def draw(self, event):
         RADIUS = 5 
