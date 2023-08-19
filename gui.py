@@ -1,5 +1,3 @@
-#gui
-
 import tkinter as tk
 
 class ImageRec:
