@@ -131,18 +131,16 @@ def load_and_predict(image_path, model_path="model.pth"):
 if __name__ == "__main__":
 
 
-    # train_save_model(150)
-
-    # train_save_model(100, model_path="modelA.pth")
+    train_save_model(150)
 
     correct = 0
 
     for i in range(10):
+        for a in ["", "a"]:
+            guess = load_and_predict(f"./fig_test/test{i}{a}.png")
 
-        guess = load_and_predict(f"./fig_test/test{i}a.png")
+            print(f"Real: {i}{a}, Guess: {guess}{a}", )
 
-        print(f"Real: {i}, Guess: {guess}", )
+            correct += int(i == guess)
 
-        correct += int(i == guess)
-
-    print(f"{correct} / 10")
+    print(f"{correct} / 20")
