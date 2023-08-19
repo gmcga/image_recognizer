@@ -12,9 +12,9 @@ class ImageRec:
         self.canvas.create_oval(x, y, x+10, y+10, fill='black')
 
 root = tk.Tk()
-print("yo")
+
 app = ImageRec(root)
-print("here")
+
 root.mainloop()
 
-print("hi")
+
