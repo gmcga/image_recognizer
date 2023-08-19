@@ -10,7 +10,6 @@ import gui
 # SCRIPT
 
 def main():
-    
     gui.main()
 
 if __name__ == "__main__":
