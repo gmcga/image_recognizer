@@ -12,6 +12,7 @@ from datetime import datetime
 import image_rec as ir
 import os
 
+
 class ImageRec:
     def __init__(self, root):
         self.root = root
