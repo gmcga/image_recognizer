@@ -69,6 +69,8 @@ class CustomDataset(Dataset):
 
 def train_save_model(n_iterations, data_folder = "./fig_train"):
 
+    print(f"Training model {get_model(True)}\n")
+
     # Set up data transformations
     transform = tv.transforms.Compose([
         tv.transforms.Resize((128, 128)),
@@ -145,29 +147,23 @@ def load_and_predict(image_path, do_train):
 
 
 
-
-
-
-def main(do_train_model):
-
-    if do_train_model:
-        train_save_model(n_iterations = 1000)
+def test(do_train_model):
 
     correct = 0
 
     string = ""
 
     for i in range(10):
-        for j in ["", "a", "b", "c"]:
+        for j in ["", "a", "b", "c", "d"]:
             guess = load_and_predict(f"./fig_test/test{i}{j}.png", do_train = do_train_model)
 
-            string += f"Real: {i}, Guess: {guess}\n"
+            string += f"Actual: {i}, Model: {guess}\n"
 
             correct += int(i == guess)
         
         string += "\n"
 
-    string += f"{correct} / 40\n"
+    string += f"{correct} / {10 * len(j)}\n"
 
     print(string)
 
@@ -176,10 +172,21 @@ def main(do_train_model):
 
 
 
+def main(do_train_model):
+
+    if do_train_model:
+        train_save_model(n_iterations = 1000)
+
+    test(do_train_model)
+
+
+
+
 
 def get_model(do_train = None):
+
     if do_train:
-        return "models/model22.pth" ############### NOTE: PUT MODEL NAME HERE
+        return "models/model24.pth" ############### NOTE: PUT MODEL NAME HERE
     
     else:
         return "models/model20.pth" # Testing
@@ -194,7 +201,5 @@ if __name__ == "__main__":
 
     main(do_train_model = True)
     
-    aux.play_sound()
     
-
-    end = time.time() ; print("Time:", end - start)
+    end = time.time() ; print("Time:", end - start) ; aux.play_sound()
