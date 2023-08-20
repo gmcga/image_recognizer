@@ -24,13 +24,16 @@ class ImageRec:
         self.root.title("Image Recognizer")
 
         # Set window size
-        WINDOW_WIDTH = 560
-        WINDOW_HEIGHT = 560
+        WINDOW_WIDTH = 700
+        WINDOW_HEIGHT = 600
         self.root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
         
-        # Explanation label
+        # Explanation labels
         self.introduction_label = tk.Label(root, text="Use your mouse to draw on the canvas!")
-        self.introduction_label.pack()   
+        self.introduction_label.pack()  
+
+        self.tips_label = tk.Label(root, text="For best results, draw slow, large, and in the centre of the canvas.")
+        self.tips_label.pack() 
 
         # Create canvas:
         self.canvas = tk.Canvas(root, width=280, height=280, bg="white", highlightbackground="black", highlightthickness=1)
@@ -63,6 +66,12 @@ class ImageRec:
         self.pen_button = tk.Button(colour_button_frame, text="Pen", command=self.toggle_pen, width=5)
         self.pen_button.pack(side="bottom", anchor="se")
 
+        # Radius size slider
+        self.radius_slider_label = tk.Label(root, text="Slide to change pen size")
+        self.radius_slider_label.pack()
+
+        self.radius_slider = tk.Scale(root, from_=3, to=10, orient="horizontal", length=200)
+        self.radius_slider.pack()
 
         # Model's guess label
         self.guess_label = tk.Label(root, text="", font=20)
@@ -89,17 +98,18 @@ class ImageRec:
         self.draw = ImageDraw.Draw(self.image)  # Create a new ImageDraw object
 
 
+
     def draw(self, event):
-        RADIUS = 5 
+        radius = self.radius_slider.get()
         
         # Draw on the tk image canvas
         x, y = event.x, event.y
-        self.canvas.create_oval(x + RADIUS, y + RADIUS, x - RADIUS, y - RADIUS, fill=self.draw_colour, outline=self.draw_colour)
+        self.canvas.create_oval(x + radius, y + radius, x - radius, y - radius, fill=self.draw_colour, outline=self.draw_colour)
         # Draw on the PIL image
-        pil_x0 = x - RADIUS
-        pil_y0 = y - RADIUS
-        pil_x1 = x + RADIUS
-        pil_y1 = y + RADIUS
+        pil_x0 = x - radius
+        pil_y0 = y - radius
+        pil_x1 = x + radius
+        pil_y1 = y + radius
         self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill=self.draw_colour)
 
         # Automatically guess image after drawing:
@@ -135,7 +145,7 @@ class ImageRec:
             _, predicted = torch.max(outputs.data, 1)
 
         predicted_class = predicted.item()
-        self.guess_label.config(text=f"Guessed Number: {predicted_class}")
+        self.guess_label.config(text=f"MODEL THINKS: {predicted_class}")
 
 
 
