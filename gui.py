@@ -23,9 +23,11 @@ class ImageRec:
         
         self.root.title("Image Recognizer")
 
+        
+
         # Set window size
-        WINDOW_WIDTH = 700
-        WINDOW_HEIGHT = 600
+        WINDOW_WIDTH = 500
+        WINDOW_HEIGHT = 580
         self.root.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}")
         
         # Explanation labels
@@ -36,7 +38,7 @@ class ImageRec:
         self.tips_label.pack() 
 
         # Create canvas:
-        self.canvas = tk.Canvas(root, width=280, height=280, bg="white", highlightbackground="black", highlightthickness=1)
+        self.canvas = tk.Canvas(root, width=280, height=280, bg="white", highlightbackground="black", highlightthickness=4)
         self.canvas.pack()
 
         # Bind LMB movement to canvas, call draw method:
@@ -48,29 +50,27 @@ class ImageRec:
 
         # Clear button
         self.clear_button = tk.Button(button_frame, text="Clear Canvas", command=self.clear_canvas, width=15, height=3)
-        self.clear_button.pack(side="left", padx=5)
+        self.clear_button.pack(side="left", padx=3)
 
         # Save button
         self.save_button = tk.Button(button_frame, text="Save Image", command=self.save_image, width=15, height=3)
         self.save_button.pack(side="left", padx=5)
 
-        # Colour and erase buttons and frame to hold them
-        colour_button_frame = tk.Frame(button_frame)
-        colour_button_frame.pack(pady = 10)
-
         self.draw_colour = "black"
 
-        self.erase_button = tk.Button(colour_button_frame, text="Eraser", command=self.toggle_eraser, width=5)
+        self.erase_button = tk.Button(button_frame, text="Eraser", command=self.toggle_eraser, width=5)
         self.erase_button.pack(side="top", anchor="ne")
 
-        self.pen_button = tk.Button(colour_button_frame, text="Pen", command=self.toggle_pen, width=5)
+        self.pen_button = tk.Button(button_frame, text="Pen", command=self.toggle_pen, width=5)
         self.pen_button.pack(side="bottom", anchor="se")
+        self.pen_button.config(relief="sunken")
 
         # Radius size slider
         self.radius_slider_label = tk.Label(root, text="Slide to change pen size")
         self.radius_slider_label.pack()
 
         self.radius_slider = tk.Scale(root, from_=3, to=10, orient="horizontal", length=200)
+        self.radius_slider.set(5)
         self.radius_slider.pack()
 
         # Model's guess label
@@ -87,9 +87,13 @@ class ImageRec:
 
     def toggle_eraser(self):
         self.draw_colour = "white"
+        self.erase_button.config(relief="sunken")
+        self.pen_button.config(relief="raised")
 
     def toggle_pen(self):
         self.draw_colour = "black"
+        self.pen_button.config(relief="sunken")
+        self.erase_button.config(relief="raised")
 
 
     def clear_canvas(self):
