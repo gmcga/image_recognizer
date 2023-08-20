@@ -4,7 +4,7 @@ import random
 
 # Set up the parameters
 output_dir = "handdrawn_digits"
-num_samples_per_digit = 300
+num_samples_per_digit = 100
 canvas_size = (280, 280)
 pen_thickness = 2
 digit_range = range(10)
@@ -27,13 +27,23 @@ font_files = [file for file in os.listdir(fonts_directory) if file.endswith('.tt
 # Function to draw digits and save images
 def generate_and_save_digit_images():
     for digit in digit_range:
-        for _ in range(num_samples_per_digit):
+        for itera in range(num_samples_per_digit):
 
 
             # Select a random font
             random_font_file = random.choice(font_files)
+
+            bad_fonts = ['marlett.ttf', 'webdings.ttf', 'symbol.ttf', 'wingding.ttf', 'SegoeIcons.ttf', 'segmdl2.ttf',
+                         'holomdl2.ttf', 'SansSerifCollection.ttf', 'CascadiaCode.ttf', 'CascadiaMono.ttf'
+            ]
+
+            while random_font_file in bad_fonts:
+                random_font_file = random.choice(font_files) ## REPICK
+
+
             random_font_path = os.path.join(fonts_directory, random_font_file)
 
+            print(digit, itera, str(random_font_file))
 
 
             canvas = Image.new("L", canvas_size, 255)  # White canvas
@@ -47,7 +57,34 @@ def generate_and_save_digit_images():
             draw.text((x, y), str(digit), fill=0, font=digit_font)
 
             # Save the image
-            filename = os.path.join(output_dir, f"autogen_{digit}_{_}.png")
+            filename = os.path.join(output_dir, f"autogenDotted_{digit}_{itera}.png")
+
+            add_random_white_dots_to_canvas(canvas, 1000, max_radius = 5)
+
             canvas.save(filename)
 
-generate_and_save_digit_images()
+
+
+def add_random_white_dots_to_canvas(canvas, num_dots, max_radius):
+    width, height = canvas.size
+    draw = ImageDraw.Draw(canvas)
+    
+    for _ in range(num_dots):
+        x = random.randint(0, width - 1)
+        y = random.randint(0, height - 1)
+        radius = random.randint(1, max_radius)
+        
+        for i in range(-radius, radius + 1):
+            for j in range(-radius, radius + 1):
+                if 0 <= x + i < width and 0 <= y + j < height:
+                    if i ** 2 + j ** 2 <= radius ** 2:
+                        draw.point((x + i, y + j), fill=255)  # Set pixel to white
+
+
+
+
+if __name__ == "__main__":
+
+    generate_and_save_digit_images()
+
+

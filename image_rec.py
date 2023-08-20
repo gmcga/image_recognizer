@@ -107,7 +107,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
             if running_loss / len(dataloader) < 0.1:
                 break
 
-        except:
+        except KeyboardInterrupt: # if you want to end training early
             break
 
     print("Finished Training")
@@ -153,8 +153,10 @@ def test(do_train_model):
 
     string = ""
 
+    Js = ["", "a", "b", "c", "d"]
+
     for i in range(10):
-        for j in ["", "a", "b", "c", "d"]:
+        for j in Js:
             guess = load_and_predict(f"./fig_test/test{i}{j}.png", do_train = do_train_model)
 
             string += f"Actual: {i}, Model: {guess}\n"
@@ -163,7 +165,7 @@ def test(do_train_model):
         
         string += "\n"
 
-    string += f"{correct} / {10 * len(j)}\n"
+    string += f"{correct} / {10 * len(Js)}\n"
 
     print(string)
 
@@ -186,7 +188,7 @@ def main(do_train_model):
 def get_model(do_train = None):
 
     if do_train:
-        return "models/model24.pth" ############### NOTE: PUT MODEL NAME HERE
+        return "models/model25.pth" ############### NOTE: PUT MODEL NAME HERE
     
     else:
         return "models/model20.pth" # Testing
