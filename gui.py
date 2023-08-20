@@ -54,7 +54,7 @@ class ImageRec:
         self.guess_button.pack(side="left", padx=5)
 
         # Model's guess label
-        self.guess_label = tk.Label(root, text="")
+        self.guess_label = tk.Label(root, text="", font=20)
         self.guess_label.pack()
 
         # Authors and model label at bottom of window
