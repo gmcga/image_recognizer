@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageDraw
-import datetime
-
+from datetime import datetime
+import image_rec as ir
+import os
 
 class ImageRec:
     def __init__(self, root):
@@ -67,13 +68,20 @@ class ImageRec:
     def save_image(self):
         # Ask user for file name and location to save
         file_path = tk.filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
-
+        print(file_path)
         if file_path:
             # Save the PIL image as a file
             self.image.save(file_path)
 
     def guess_image(self):
-        pass
+        os.makedirs("./fig_guess")
+        current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
+        file_name = f"./fig_guess/{current_time}.png"
+        self.image.save(file_name)
+        guess = ir.load_and_predict(file_name)
+        print("guess",guess)
+        os.system(f"rm -rf fig_guess")
+
 def main():
 
     root = tk.Tk()
