@@ -1,16 +1,24 @@
+## main.py ##
+## Authors: 
+## Description:
+#       Main file for Image Recognizer ML Software
+#       © 2023, Graeme McGaughey and Kyle Sung
+
+
 # IMPORTS
 
-# import image_rec as ir
+import image_rec as ir
 import gui
+
 
 # FUNCTION DEFINITIONS
 
-MODEL_PATH = "model4.pth"
+def main():
+    print(f"Running model {ir.get_model()}")
+    gui.main()
+
 
 # SCRIPT
-
-def main():
-    gui.main()
 
 if __name__ == "__main__":
     main()

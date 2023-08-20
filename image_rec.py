@@ -1,3 +1,10 @@
+## image_rec.py ##
+## Authors: 
+## Description:
+#       ML file for Image Recognizer ML Software
+#       © 2023, Kyle Sung and Graeme McGaughey
+
+
 import os
 
 import torch
