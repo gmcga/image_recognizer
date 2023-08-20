@@ -60,7 +60,7 @@ class CustomDataset(Dataset):
 
 
 
-def train_save_model(n_iterations, data_folder = "./fig_train", model_path="model.pth"):
+def train_save_model(n_iterations, data_folder = "./fig_train"):
 
     # Set up data transformations
     transform = tv.transforms.Compose([
@@ -104,17 +104,17 @@ def train_save_model(n_iterations, data_folder = "./fig_train", model_path="mode
     print("Finished Training")
 
     # Save the trained model's state dictionary
-    torch.save(net.state_dict(), model_path)
-    print(f"Model saved to {model_path}")
+    torch.save(net.state_dict(), get_model())
+    print(f"Model saved to {get_model()}")
     
     return
 
 
 
 # Load the trained model and make predictions
-def load_and_predict(image_path, model_path="model3.pth"):
+def load_and_predict(image_path):
     net = Net(10)  # Assuming you know the number of classes
-    net.load_state_dict(torch.load(model_path))
+    net.load_state_dict(torch.load(get_model()))
     net.eval()  # Set the model to evaluation mode
 
     transform = tv.transforms.Compose([
@@ -149,9 +149,10 @@ def play_sound():
 
 
 
-def main():
+def main(do_train_model):
 
-    train_save_model(100, model_path = "model4.pth")
+    if do_train_model:
+        train_save_model(n_iterations=100)
 
     correct = 0
 
@@ -159,7 +160,7 @@ def main():
 
     for i in range(10):
         for j in ["", "a", "b"]:
-            guess = load_and_predict(f"./fig_test/test{i}{j}.png", model_path='model4.pth')
+            guess = load_and_predict(f"./fig_test/test{i}{j}.png")
 
             string += f"Real: {i}, Guess: {guess}\n"
 
@@ -171,15 +172,27 @@ def main():
 
     print(string)
 
-    with open("model4_train.txt", 'w') as file:
+    with open(f"{get_model()[:-4]}.txt", 'w') as file:
         file.write(string)
 
 
 
+
+def get_model():
+    return "model4.pth" ############### NOTE: PUT MODEL NAME HERE
+
+
+
+
 if __name__ == "__main__":
+
     import time
     start = time.time()
-    main()
+
+    main(do_train_model = False)
+    
     play_sound()
+    
     end = time.time()
-    print(end - start)
+    
+    print("Time:", end - start)

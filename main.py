@@ -5,7 +5,7 @@ import gui
 
 # FUNCTION DEFINITIONS
 
-
+MODEL_PATH = "model4.pth"
 
 # SCRIPT
 
