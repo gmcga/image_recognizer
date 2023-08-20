@@ -74,7 +74,10 @@ class ImageRec:
             self.image.save(file_path)
 
     def guess_image(self):
-        os.makedirs("./fig_guess")
+        try:
+            os.makedirs("./fig_guess")
+        except FileExistsError:
+            pass
         current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
         file_name = f"./fig_guess/{current_time}.png"
         self.image.save(file_name)

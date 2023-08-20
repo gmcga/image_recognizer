@@ -112,7 +112,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train", model_path="mode
 
 
 # Load the trained model and make predictions
-def load_and_predict(image_path, model_path="model3.pth"):
+def load_and_predict(image_path, model_path="model3_18-30.pth"):
     net = Net(10)  # Assuming you know the number of classes
     net.load_state_dict(torch.load(model_path))
     net.eval()  # Set the model to evaluation mode
