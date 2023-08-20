@@ -13,7 +13,7 @@ import torchvision as tv
 
 
 
-MODEL_NUMBER = ir.get_model().split('_')[0].replace("model", "").replace(".pth", "")
+MODEL_NUMBER = ir.get_model().split('_')[0].replace("models/model", "").replace(".pth", "")
 
 
 class ImageRec:
@@ -51,6 +51,19 @@ class ImageRec:
         self.save_button = tk.Button(button_frame, text="Save Image", command=self.save_image, width=15, height=3)
         self.save_button.pack(side="left", padx=5)
 
+        # Colour and erase buttons and frame to hold them
+        colour_button_frame = tk.Frame(button_frame)
+        colour_button_frame.pack(pady = 10)
+
+        self.draw_colour = "black"
+
+        self.erase_button = tk.Button(colour_button_frame, text="Eraser", command=self.toggle_eraser, width=5)
+        self.erase_button.pack(side="top", anchor="ne")
+
+        self.pen_button = tk.Button(colour_button_frame, text="Pen", command=self.toggle_pen, width=5)
+        self.pen_button.pack(side="bottom", anchor="se")
+
+
         # Model's guess label
         self.guess_label = tk.Label(root, text="", font=20)
         self.guess_label.pack()
@@ -63,6 +76,12 @@ class ImageRec:
         self.image = Image.new("RGB", (280, 280), "white")
         self.draw = ImageDraw.Draw(self.image)
 
+    def toggle_eraser(self):
+        self.draw_colour = "white"
+
+    def toggle_pen(self):
+        self.draw_colour = "black"
+
 
     def clear_canvas(self):
         self.canvas.delete("all") # Clear tkinter canvas
@@ -72,17 +91,16 @@ class ImageRec:
 
     def draw(self, event):
         RADIUS = 5 
-        colour = "black"
-        # Draw on tk image
+        
+        # Draw on the tk image canvas
         x, y = event.x, event.y
-        self.canvas.create_oval(x + RADIUS, y + RADIUS, x - RADIUS, y - RADIUS, fill=colour)
-
+        self.canvas.create_oval(x + RADIUS, y + RADIUS, x - RADIUS, y - RADIUS, fill=self.draw_colour, outline=self.draw_colour)
         # Draw on the PIL image
         pil_x0 = x - RADIUS
         pil_y0 = y - RADIUS
         pil_x1 = x + RADIUS
         pil_y1 = y + RADIUS
-        self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill=colour)
+        self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill=self.draw_colour)
 
         # Automatically guess image after drawing:
         self.guess_image()
@@ -91,7 +109,7 @@ class ImageRec:
     def save_image(self):
         # Ask user for file name and location to save
         file_path = tk.filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
-        # print(file_path)
+        
         if file_path:
             # Save the PIL image as a file
             self.image.save(file_path)
