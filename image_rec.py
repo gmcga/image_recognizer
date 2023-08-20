@@ -103,8 +103,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
             print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
 
             if running_loss / len(dataloader) < 0.1:
-                # break
-                pass
+                break
 
         except:
             break
@@ -112,8 +111,8 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
     print("Finished Training")
 
     # Save the trained model's state dictionary
-    torch.save(net.state_dict(), get_model())
-    print(f"Model saved to {get_model()}")
+    torch.save(net.state_dict(), get_model(True)) ## NOTE: True since we are training
+    print(f"Model saved to {get_model(True)}")
     
     return
 
@@ -121,10 +120,10 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
 
 # Load the trained model and make predictions
 
-def load_and_predict(image_path):
+def load_and_predict(image_path, do_train):
 
     net = Net(10)  # Assuming you know the number of classes
-    net.load_state_dict(torch.load(get_model()))
+    net.load_state_dict(torch.load(get_model(do_train)))
     net.eval()  # Set the model to evaluation mode
 
     transform = tv.transforms.Compose([
@@ -160,7 +159,7 @@ def main(do_train_model):
 
     for i in range(10):
         for j in ["", "a", "b", "c"]:
-            guess = load_and_predict(f"./fig_test/test{i}{j}.png")
+            guess = load_and_predict(f"./fig_test/test{i}{j}.png", do_train = do_train_model)
 
             string += f"Real: {i}, Guess: {guess}\n"
 
@@ -172,14 +171,18 @@ def main(do_train_model):
 
     print(string)
 
-    with open(f"{get_model()[:-4]}.txt", 'w') as file:
+    with open(f"{get_model(do_train_model)[:-4]}.txt", 'w') as file:
         file.write(string)
 
 
 
 
-def get_model():
-    return "models/model20.pth" ############### NOTE: PUT MODEL NAME HERE
+def get_model(do_train = None):
+    if do_train:
+        return "models/model22.pth" ############### NOTE: PUT MODEL NAME HERE
+    
+    else:
+        return "models/model20.pth" # Testing
 
 
 
