@@ -80,7 +80,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
 
     # Create dataset and dataloader
     dataset = CustomDataset(data_folder, transform=transform)
-    dataloader = DataLoader(dataset, batch_size=45, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size=36, shuffle=True)
 
     # Initialize the network and loss function
     num_classes = len(os.listdir(data_folder))
@@ -102,7 +102,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
                 running_loss += loss.item()
             print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
 
-            if running_loss / len(dataloader) < 0.12:
+            if running_loss / len(dataloader) < 0.1:
                 break
 
         except:
@@ -158,7 +158,7 @@ def main(do_train_model):
     string = ""
 
     for i in range(10):
-        for j in ["", "a", "b"]:
+        for j in ["", "a", "b", "c"]:
             guess = load_and_predict(f"./fig_test/test{i}{j}.png")
 
             string += f"Real: {i}, Guess: {guess}\n"
@@ -167,7 +167,7 @@ def main(do_train_model):
         
         string += "\n"
 
-    string += f"{correct} / 30\n"
+    string += f"{correct} / 40\n"
 
     print(string)
 
@@ -178,7 +178,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "models/model8.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "models/model16.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 

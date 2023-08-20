@@ -1,15 +1,31 @@
 model 8
 - BS: 32
-- Score: 18
+- Score: 18 / 30
 
 model 9
 - BS: 16
-- Score: 16
+- Score: 16 / 30
 
 model 10
 - BS: 25
-- Score: 17
+- Score: 17 / 30
 
 model 11
 - BS: 45
-- Score: 16
+- Score: 16 / 30
+
+model 13
+- BS: 32
+- Score: 20 / 30
+
+model 14
+- BS: 32
+- Score: 20 / 30
+
+model 15
+- BS: 32
+- Score: 24 / 40
+
+model 16
+- BS: 36
+- Score: 
