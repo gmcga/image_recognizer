@@ -18,6 +18,7 @@ from torchvision.io import read_image
 
 from PIL import Image
 
+import auxilary as aux
 
 
 
@@ -147,16 +148,6 @@ def load_and_predict(image_path):
 
 
 
-def play_sound():
-    import winsound
-    duration = 100 #ms
-    frequency = 440
-    for _ in range(5):
-        winsound.Beep(frequency, duration,)
-
-
-
-
 
 def main(do_train_model):
 
@@ -195,13 +186,12 @@ def get_model():
 
 if __name__ == "__main__":
 
-    import time
-    start = time.time()
+    import time ; start = time.time()
+
 
     main(do_train_model = False)
     
-    play_sound()
+    aux.play_sound()
     
-    end = time.time()
-    
-    print("Time:", end - start)
+
+    end = time.time() ; print("Time:", end - start)
