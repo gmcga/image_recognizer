@@ -1,16 +1,11 @@
-## gui.py ##
-## Authors: 
-## Description:
-#       GUI file for Image Recognizer ML Software
-#       © 2023, Graeme McGaughey and Kyle Sung
-
-
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageDraw
 from datetime import datetime
 import image_rec as ir
 import os
+
+MODEL_NUMBER = ir.get_model().split('_')[0].replace("model", "").replace(".pth", "")
 
 class ImageRec:
     def __init__(self, root):
@@ -54,8 +49,9 @@ class ImageRec:
         self.guess_label.pack()
 
         # Authors and model label at bottom of window
-        self.bottom_label = tk.Label(root, text=f"Running model {ir.get_model()} \n Made by Graeme McGaughey and Kyle Sung")
+        self.bottom_label = tk.Label(root, text=f"Running Image Recognition Model {MODEL_NUMBER} \n Made by Graeme McGaughey and Kyle Sung")
         self.bottom_label.pack(side="bottom", pady=10)
+
         # Initialize PIL image for drawing
         self.image = Image.new("RGB", (280, 280), "white")
         self.draw = ImageDraw.Draw(self.image)
