@@ -1,8 +1,7 @@
-## gui.py ##
-## Authors: 
-## Description:
-#       GUI file for Image Recognizer ML Software
-#       © 2023, Graeme McGaughey and Kyle Sung
+## gui.py
+## Authors: Graeme McGaughey and Kyle Sung
+## Description: GUI file for Image Recognizer ML Software
+
 
 
 import tkinter as tk

@@ -1,8 +1,6 @@
-## main.py ##
-## Authors: 
-## Description:
-#       Main file for Image Recognizer ML Software
-#       © 2023, Graeme McGaughey and Kyle Sung
+## main.py 
+## Authors: Graeme McGaughey and Kyle Sung
+## Description: Main file for Image Recognizer ML Software
 
 
 # IMPORTS

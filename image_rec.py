@@ -1,8 +1,7 @@
-## image_rec.py ##
-## Authors: 
-## Description:
-#       ML file for Image Recognizer ML Software
-#       © 2023, Kyle Sung and Graeme McGaughey
+## image_rec.py
+## Authors: Kyle Sung and Graeme McGaughey
+## Description: ML file for Image Recognizer ML Software
+
 
 
 import os
