@@ -15,7 +15,7 @@ import gui
 
 def main():
     print(f"Running model {ir.get_model()}")
-    gui.main(do_train_model = False)
+    gui.main()
 
 
 # SCRIPT
