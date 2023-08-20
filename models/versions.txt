@@ -40,4 +40,7 @@ model 18
 
 model 19
 - BS: 32
-- Score: 
+- Score: 24/40
+
+model 20
+- BS: 

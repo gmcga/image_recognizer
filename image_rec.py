@@ -80,7 +80,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
 
     # Create dataset and dataloader
     dataset = CustomDataset(data_folder, transform=transform)
-    dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size = 32, shuffle=True)
 
     # Initialize the network and loss function
     num_classes = len(os.listdir(data_folder))
