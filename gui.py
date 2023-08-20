@@ -72,16 +72,17 @@ class ImageRec:
 
     def draw(self, event):
         RADIUS = 5 
+        colour = "black"
         # Draw on tk image
         x, y = event.x, event.y
-        self.canvas.create_oval(x + RADIUS, y + RADIUS, x - RADIUS, y - RADIUS, fill="black")
+        self.canvas.create_oval(x + RADIUS, y + RADIUS, x - RADIUS, y - RADIUS, fill=colour)
 
         # Draw on the PIL image
         pil_x0 = x - RADIUS
         pil_y0 = y - RADIUS
         pil_x1 = x + RADIUS
         pil_y1 = y + RADIUS
-        self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill="black")
+        self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill=colour)
 
         # Automatically guess image after drawing:
         self.guess_image()
