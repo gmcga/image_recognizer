@@ -178,7 +178,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "model5.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "model6.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 

@@ -15,7 +15,7 @@ import torchvision as tv
 from torchvision.datasets import ImageFolder
 from torchvision.io import read_image
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 import auxiliary as aux
 
@@ -77,9 +77,18 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
         tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
     ])
 
+    mnist_transform = tv.transforms.Compose([
+        tv.transforms.ToPILImage(),
+        tv.transforms.Lambda(lambda img: ImageOps.invert(img)),
+        tv.transforms.Resize((128, 128)),
+        tv.transforms.Grayscale(num_output_channels=3),  # Convert to RGB
+        tv.transforms.ToTensor(),
+        tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+    ])
+
     #Load MNIST dataset
 
-    mnist_dataset = tv.datasets.MNIST(root = './data', train = True, download = True, transform = transform)
+    mnist_dataset = tv.datasets.MNIST(root = './data', train = True, download = True, transform = mnist_transform)
     mnist_dataloader = DataLoader(mnist_dataset, batch_size=32, shuffle=True)
 
     # Create dataset and dataloader
@@ -98,6 +107,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
     for epoch in range(n_iterations):  # Adjust the number of epochs as needed
         try:
             running_loss = 0.0
+            
             for custom_data, mnist_data in combined_dataloader:
                 inputs_data, labels_data = custom_data
                 inputs_mnist, labels_mnist = mnist_data
@@ -190,7 +200,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "model6.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "model1_mnist.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 
