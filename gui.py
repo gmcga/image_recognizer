@@ -5,7 +5,9 @@ from datetime import datetime
 import image_rec as ir
 import os
 
+
 MODEL_NUMBER = ir.get_model().split('_')[0].replace("model", "").replace(".pth", "")
+
 
 class ImageRec:
     def __init__(self, root):
