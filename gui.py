@@ -1,3 +1,10 @@
+## gui.py ##
+## Authors: 
+## Description:
+#       GUI file for Image Recognizer ML Software
+#       © 2023, Graeme McGaughey and Kyle Sung
+
+
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageDraw
