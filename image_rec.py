@@ -188,10 +188,10 @@ def main(do_train_model):
 def get_model(do_train = None):
 
     if do_train:
-        return "models/model25.pth" ############### NOTE: PUT MODEL NAME HERE
+        return "models/model27.pth" ############### NOTE: PUT MODEL NAME HERE
     
     else:
-        return "models/model20.pth" # Testing
+        return "models/model26.pth" # Testing
 
 
 
