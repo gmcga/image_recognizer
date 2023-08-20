@@ -17,6 +17,7 @@ MODEL_NUMBER = ir.get_model().split('_')[0].replace("model", "").replace(".pth",
 
 
 class ImageRec:
+
     def __init__(self, root):
         self.root = root
         self.root.title("Image Recognizer")
@@ -71,6 +72,7 @@ class ImageRec:
         self.image = Image.new("RGB", (280, 280), "white")  # Clear PIL image
         self.draw = ImageDraw.Draw(self.image)  # Create a new ImageDraw object
 
+
     def draw(self, event):
         RADIUS = 5 
         # Draw on tk image
@@ -88,10 +90,11 @@ class ImageRec:
     def save_image(self):
         # Ask user for file name and location to save
         file_path = tk.filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png")])
-        print(file_path)
+        # print(file_path)
         if file_path:
             # Save the PIL image as a file
             self.image.save(file_path)
+
 
     def guess_image(self):
         try:
@@ -109,6 +112,7 @@ class ImageRec:
         os.system(f"rm -rf fig_guess")
 
 
+
 def main():
 
     root = tk.Tk()
@@ -116,6 +120,8 @@ def main():
     app = ImageRec(root)
 
     root.mainloop()
+
+
 
 if __name__ == "__main__":
     main()

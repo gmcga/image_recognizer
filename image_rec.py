@@ -18,7 +18,7 @@ from torchvision.io import read_image
 
 from PIL import Image
 
-import auxilary as aux
+import auxiliary as aux
 
 
 
