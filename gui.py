@@ -46,6 +46,9 @@ class ImageRec:
         self.guess_label = tk.Label(root, text="")
         self.guess_label.pack()
 
+        # Authors and model label at bottom of window
+        self.bottom_label = tk.Label(root, text=f"Running model {ir.get_model()} \n Made by Graeme McGaughey and Kyle Sung")
+        self.bottom_label.pack(side="bottom", pady=10)
         # Initialize PIL image for drawing
         self.image = Image.new("RGB", (280, 280), "white")
         self.draw = ImageDraw.Draw(self.image)
@@ -83,7 +86,7 @@ class ImageRec:
             os.makedirs("./fig_guess")
         except FileExistsError:
             pass
-        
+
         current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
         file_name = f"./fig_guess/{current_time}.png"
         self.image.save(file_name)
