@@ -80,7 +80,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
 
     # Create dataset and dataloader
     dataset = CustomDataset(data_folder, transform=transform)
-    dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+    dataloader = DataLoader(dataset, batch_size=45, shuffle=True)
 
     # Initialize the network and loss function
     num_classes = len(os.listdir(data_folder))
@@ -178,7 +178,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "model6.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "models/model8.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 
