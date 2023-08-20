@@ -83,16 +83,23 @@ def train_save_model(n_iterations, data_folder = "./fig_train", model_path="mode
 
     # Training loop
     for epoch in range(n_iterations):  # Adjust the number of epochs as needed
-        running_loss = 0.0
-        for i, data in enumerate(dataloader, 0):
-            inputs, labels = data
-            optimizer.zero_grad()
-            outputs = net(inputs)
-            loss = criterion(outputs, labels)
-            loss.backward()
-            optimizer.step()
-            running_loss += loss.item()
-        print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
+        try:
+            running_loss = 0.0
+            for i, data in enumerate(dataloader, 0):
+                inputs, labels = data
+                optimizer.zero_grad()
+                outputs = net(inputs)
+                loss = criterion(outputs, labels)
+                loss.backward()
+                optimizer.step()
+                running_loss += loss.item()
+            print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
+
+            if running_loss / len(dataloader) < 0.125:
+                break
+
+        except:
+            break
 
     print("Finished Training")
 
@@ -136,7 +143,7 @@ def play_sound():
     duration = 100 #ms
     frequency = 440
     for _ in range(5):
-        winsound.beep(frequency, duration,)
+        winsound.Beep(frequency, duration,)
 
 
 
@@ -144,29 +151,35 @@ def play_sound():
 
 def main():
 
-    train_save_model(100)
+    train_save_model(100, model_path = "model4.pth")
 
     correct = 0
 
     string = ""
 
     for i in range(10):
-        for a in ["", "a"]:
-            guess = load_and_predict(f"./fig_test/test{i}{a}.png")
+        for j in ["", "a", "b"]:
+            guess = load_and_predict(f"./fig_test/test{i}{j}.png", model_path='model4.pth')
 
-            string += f"Real: {i}{a}, Guess: {guess}{a}"
+            string += f"Real: {i}, Guess: {guess}\n"
 
             correct += int(i == guess)
+        
+        string += "\n"
 
-    string += f"{correct} / 20"
+    string += f"{correct} / 30\n"
 
     print(string)
 
-    with open("model_train.txt") as file:
+    with open("model4_train.txt", 'w') as file:
         file.write(string)
 
 
 
 if __name__ == "__main__":
+    import time
+    start = time.time()
     main()
     play_sound()
+    end = time.time()
+    print(end - start)
