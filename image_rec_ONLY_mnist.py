@@ -70,12 +70,6 @@ class CustomDataset(Dataset):
 def train_save_model(n_iterations, data_folder = "./fig_train"):
 
     # Set up data transformations
-    transform = tv.transforms.Compose([
-        tv.transforms.Resize((128, 128)),
-        tv.transforms.Grayscale(num_output_channels=3),  # Convert to RGB
-        tv.transforms.ToTensor(),
-        tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
-    ])
 
     mnist_transform = tv.transforms.Compose([
         tv.transforms.Lambda(lambda img: ImageOps.invert(img)),
@@ -90,11 +84,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
     mnist_dataset = tv.datasets.MNIST(root = './data', train = True, download = True, transform = mnist_transform)
     mnist_dataloader = DataLoader(mnist_dataset, batch_size=3, shuffle=True)
 
-    # Create dataset and dataloader
-    dataset = CustomDataset(data_folder, transform=transform)
-    dataloader = DataLoader(dataset, batch_size=3, shuffle=True)
 
-    combined_dataloader = zip(dataloader, mnist_dataloader)
 
     # Initialize the network and loss function
     num_classes = len(os.listdir(data_folder))
@@ -107,12 +97,9 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
         try:
             running_loss = 0.0
 
-            for custom_data, mnist_data in combined_dataloader:
-                inputs_data, labels_data = custom_data
-                inputs_mnist, labels_mnist = mnist_data
+            for mnist_data in mnist_dataloader:
 
-                inputs = torch.cat((inputs_data, inputs_mnist), dim = 0)
-                labels = torch.cat((labels_data, labels_mnist), dim = 0)
+                inputs, labels = mnist_data
 
                 optimizer.zero_grad()
                 outputs = net(inputs)
@@ -121,9 +108,9 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
                 optimizer.step()
                 running_loss += loss.item()
 
-            print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
+            print(f"Epoch {epoch+1}, Loss: {running_loss / len(mnist_dataloader)}")
 
-            if running_loss / len(dataloader) < 0.12:
+            if running_loss / len(mnist_dataloader) < 0.12:
                 pass
                 # break
 
@@ -200,7 +187,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "model1_mnist.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "model1_mnistONLY.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 
