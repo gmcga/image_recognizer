@@ -28,4 +28,16 @@ model 15
 
 model 16
 - BS: 36
+- Score: 25 / 40 
+
+model 17
+- BS: 32
+- Score: 24 / 40
+
+model 18
+- BS: 32
+- Score: 24 / 40
+
+model 19
+- BS: 32
 - Score: 
