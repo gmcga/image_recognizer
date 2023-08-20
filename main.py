@@ -12,7 +12,8 @@ import gui
 # FUNCTION DEFINITIONS
 
 def main():
-    print(f"Running model {ir.get_model()}")
+    print(f"Running {ir.get_model()}")
+    print("--Starting GUI--")
     gui.main()
 
 
