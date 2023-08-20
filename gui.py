@@ -3,13 +3,14 @@
 ## Description: GUI file for Image Recognizer ML Software
 
 
-
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageDraw
 from datetime import datetime
 import image_rec as ir
-import os
+import torch
+import torchvision as tv
+
 
 
 MODEL_NUMBER = ir.get_model().split('_')[0].replace("model", "").replace(".pth", "")
@@ -19,6 +20,7 @@ class ImageRec:
 
     def __init__(self, root):
         self.root = root
+        
         self.root.title("Image Recognizer")
 
         # Set window size
@@ -85,6 +87,9 @@ class ImageRec:
         pil_y1 = y + RADIUS
         self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill="black")
 
+        # Automatically guess image after drawing:
+        self.guess_image()
+
 
     def save_image(self):
         # Ask user for file name and location to save
@@ -96,19 +101,27 @@ class ImageRec:
 
 
     def guess_image(self):
-        try:
-            os.makedirs("./fig_guess")
-        except FileExistsError:
-            pass
+        # Convert the current drawing on the canvas to a tensor
+        pil_image = self.image.copy()
+        pil_image = pil_image.resize((128, 128))  # Resize to match the model input size
+        transform = tv.transforms.Compose([
+            tv.transforms.ToTensor(),
+            tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+        ])
+        image_tensor = transform(pil_image)
+        image_tensor = image_tensor.unsqueeze(0)  # Add batch dimension
 
-        current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
-        file_name = f"./fig_guess/{current_time}.png"
-        self.image.save(file_name)
+        net = ir.Net(10)  # 10 classes
+        net.load_state_dict(torch.load(ir.get_model()))
+        net.eval()  # Set the model to evaluation mode
 
-        guess = ir.load_and_predict(file_name)
-        self.guess_label.config(text=f"Model's Guess: {guess}")
-        
-        os.system(f"rm -rf fig_guess")
+        with torch.no_grad():
+            outputs = net(image_tensor)
+            _, predicted = torch.max(outputs.data, 1)
+
+        predicted_class = predicted.item()
+        self.guess_label.config(text=f"Guessed Number: {predicted_class}")
+
 
 
 
@@ -116,6 +129,7 @@ def main():
 
     root = tk.Tk()
 
+    
     app = ImageRec(root)
 
     root.mainloop()
