@@ -42,9 +42,14 @@ class ImageRec:
         self.guess_button = tk.Button(button_frame, text="Guess!", command=self.guess_image, width=15, height=3)
         self.guess_button.pack(side="left", padx=5)
 
+        # Model's guess label
+        self.guess_label = tk.Label(root, text="")
+        self.guess_label.pack()
+
         # Initialize PIL image for drawing
         self.image = Image.new("RGB", (280, 280), "white")
         self.draw = ImageDraw.Draw(self.image)
+
 
     def clear_canvas(self):
         self.canvas.delete("all") # Clear tkinter canvas
@@ -74,13 +79,20 @@ class ImageRec:
             self.image.save(file_path)
 
     def guess_image(self):
-        os.makedirs("./fig_guess")
+        try:
+            os.makedirs("./fig_guess")
+        except FileExistsError:
+            pass
+        
         current_time = datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")
         file_name = f"./fig_guess/{current_time}.png"
         self.image.save(file_name)
+
         guess = ir.load_and_predict(file_name)
-        print("guess",guess)
+        self.guess_label.config(text=f"Model's Guess: {guess}")
+        
         os.system(f"rm -rf fig_guess")
+
 
 def main():
 
