@@ -51,10 +51,6 @@ class ImageRec:
         self.save_button = tk.Button(button_frame, text="Save Image", command=self.save_image, width=15, height=3)
         self.save_button.pack(side="left", padx=5)
 
-        # Guess button
-        self.guess_button = tk.Button(button_frame, text="Guess!", command=self.guess_image, width=15, height=3)
-        self.guess_button.pack(side="left", padx=5)
-
         # Model's guess label
         self.guess_label = tk.Label(root, text="", font=20)
         self.guess_label.pack()
