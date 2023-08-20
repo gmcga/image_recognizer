@@ -86,7 +86,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
     num_classes = len(os.listdir(data_folder))
     net = Net(num_classes)
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    optimizer = optim.SGD(net.parameters(), lr = 0.0012, momentum=0.9) #OG: lr = 0.001
 
     # Training loop
     for epoch in range(n_iterations):  # Adjust the number of epochs as needed
@@ -103,7 +103,8 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
             print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
 
             if running_loss / len(dataloader) < 0.1:
-                break
+                # break
+                pass
 
         except:
             break
@@ -151,7 +152,7 @@ def load_and_predict(image_path):
 def main(do_train_model):
 
     if do_train_model:
-        train_save_model(n_iterations=100)
+        train_save_model(n_iterations = 1000)
 
     correct = 0
 
@@ -178,7 +179,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "models/model19.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "models/model20.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 

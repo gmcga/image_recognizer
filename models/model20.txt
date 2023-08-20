@@ -13,12 +13,12 @@ Real: 2, Guess: 2
 Real: 2, Guess: 2
 Real: 2, Guess: 4
 
-Real: 3, Guess: 9
+Real: 3, Guess: 3
 Real: 3, Guess: 5
 Real: 3, Guess: 4
 Real: 3, Guess: 3
 
-Real: 4, Guess: 5
+Real: 4, Guess: 2
 Real: 4, Guess: 4
 Real: 4, Guess: 4
 Real: 4, Guess: 4
@@ -30,7 +30,7 @@ Real: 5, Guess: 4
 
 Real: 6, Guess: 8
 Real: 6, Guess: 1
-Real: 6, Guess: 4
+Real: 6, Guess: 8
 Real: 6, Guess: 6
 
 Real: 7, Guess: 7
@@ -48,4 +48,4 @@ Real: 9, Guess: 9
 Real: 9, Guess: 9
 Real: 9, Guess: 8
 
-24 / 40
+25 / 40
