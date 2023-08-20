@@ -1,0 +1,41 @@
+Real: 0, Guess: 8
+Real: 0, Guess: 8
+Real: 0, Guess: 8
+
+Real: 1, Guess: 4
+Real: 1, Guess: 4
+Real: 1, Guess: 8
+
+Real: 2, Guess: 4
+Real: 2, Guess: 3
+Real: 2, Guess: 4
+
+Real: 3, Guess: 8
+Real: 3, Guess: 8
+Real: 3, Guess: 4
+
+Real: 4, Guess: 8
+Real: 4, Guess: 8
+Real: 4, Guess: 4
+
+Real: 5, Guess: 4
+Real: 5, Guess: 4
+Real: 5, Guess: 8
+
+Real: 6, Guess: 8
+Real: 6, Guess: 8
+Real: 6, Guess: 8
+
+Real: 7, Guess: 4
+Real: 7, Guess: 3
+Real: 7, Guess: 3
+
+Real: 8, Guess: 8
+Real: 8, Guess: 4
+Real: 8, Guess: 8
+
+Real: 9, Guess: 4
+Real: 9, Guess: 4
+Real: 9, Guess: 8
+
+3 / 30

@@ -1,5 +1,5 @@
 ## main.py 
-## Authors: Graeme McGaughey and Kyle Sung
+## Authors: Kyle Sung and Graeme McGaughey
 ## Description: Main file for Image Recognizer ML Software
 
 

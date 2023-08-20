@@ -102,7 +102,7 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
                 running_loss += loss.item()
             print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
 
-            if running_loss / len(dataloader) < 0.125:
+            if running_loss / len(dataloader) < 0.12:
                 break
 
         except:
@@ -178,7 +178,7 @@ def main(do_train_model):
 
 
 def get_model():
-    return "model4.pth" ############### NOTE: PUT MODEL NAME HERE
+    return "model5.pth" ############### NOTE: PUT MODEL NAME HERE
 
 
 
@@ -188,7 +188,7 @@ if __name__ == "__main__":
     import time ; start = time.time()
 
 
-    main(do_train_model = False)
+    main(do_train_model = True)
     
     aux.play_sound()
     
