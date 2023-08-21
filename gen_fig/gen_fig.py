@@ -4,7 +4,7 @@ import random
 
 # Set up the parameters
 output_dir = "handdrawn_digits"
-num_samples_per_digit = 69
+num_samples_per_digit = 50
 canvas_size = (280, 280)
 pen_thickness = 2
 digit_range = range(10)
@@ -57,9 +57,9 @@ def generate_and_save_digit_images():
             draw.text((x, y), str(digit), fill=0, font=digit_font)
 
             # Save the image
-            filename = os.path.join(output_dir, f"agDotted2_{digit}_{itera}.png")
+            filename = os.path.join(output_dir, f"agDottedBig_{digit}_{itera}.png")
 
-            add_random_white_dots_to_canvas(canvas, 1200, max_radius = 2)
+            add_random_white_dots_to_canvas(canvas, 500, max_radius = 6)
 
             canvas.save(filename)
 

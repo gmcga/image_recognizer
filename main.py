@@ -15,7 +15,7 @@ import gui
 
 def main():
 
-    print(f"Running {ir.get_model()}"
+    print(f"Running {ir.get_model()}\n"
             "--Starting GUI--")
     
     gui.main() # initialize GUI
