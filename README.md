@@ -63,3 +63,5 @@ We welcome contributions to improve and expand this project. If you find any iss
 Feel free to explore, experiment, and learn from this project. Happy coding!
 
 Maintainers:
+- Kyle Sung
+- Graeme McGaughey
