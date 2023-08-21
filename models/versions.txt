@@ -42,5 +42,10 @@ model 19
 - BS: 32
 - Score: 24/40
 
-model 20
-- BS: 
+model 28
+- BS: 32
+- Score: 52 / 90
+
+model 29
+- BS: 32
+- Score: 46 / 90
