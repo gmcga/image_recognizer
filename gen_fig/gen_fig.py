@@ -48,18 +48,18 @@ def generate_and_save_digit_images():
 
             canvas = Image.new("L", canvas_size, 255)  # White canvas
             draw = ImageDraw.Draw(canvas)
-            digit_font = ImageFont.truetype(font = random_font_path, size = random.randrange(100, 170))
+            digit_font = ImageFont.truetype(font = random_font_path, size = random.randrange(100, 150))
 
             # Random position for the digit
-            x, y = random.randrange(15, 135), random.randrange(15, 125)
+            x, y = random.randrange(10, 150), random.randrange(15, 125)
 
             # Generate and draw the digit on the canvas
             draw.text((x, y), str(digit), fill=0, font=digit_font)
 
             # Save the image
-            filename = os.path.join(output_dir, f"agDotted_{digit}_{itera}.png")
+            filename = os.path.join(output_dir, f"agDotted2_{digit}_{itera}.png")
 
-            add_random_white_dots_to_canvas(canvas, 800, max_radius = 3)
+            add_random_white_dots_to_canvas(canvas, 1200, max_radius = 2)
 
             canvas.save(filename)
 
