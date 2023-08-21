@@ -13,12 +13,15 @@ Welcome to the Image Digit Recognition Neural Network repository! This project f
 - [Training](#training)
 - [Testing and Evaluation](#testing-and-evaluation)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
+- [Contributing](#contributing)
+
 
 ## Introduction
 
 The purpose of this project is to demonstrate the process of building and training a neural network to recognize and classify handwritten digits from images. Handwritten digit recognition has applications in various fields, such as digitized document processing, postal automation, and more. This repository serves as a guide to implementing a simple digit recognition system using Python and popular machine learning libraries.
+
+
 
 ## Getting Started
 
@@ -36,18 +39,23 @@ To get started with the project, follow these steps:
 
   ```bash
 
-    pip install -r requirements.txt
+    pip install -r installation/requirements.txt
   ```
 
 
+## Dataset
+
+## Neural Network Architecture
+
+## License
 
 
-
-
-Contributing
+## Contributing
 
 We welcome contributions to improve and expand this project. If you find any issues or have ideas for enhancements, feel free to create issues or pull requests in this repository.
-License
+
+
+
 
 
 Feel free to explore, experiment, and learn from this project. Happy coding!
