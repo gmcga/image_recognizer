@@ -15,10 +15,16 @@ import gui
 
 def main():
 
-    print(f"Running {ir.get_model()}\n"
-            "--Starting GUI--")
+    print()
+    print(  f"ML Image Recognizer\n"
+            f"Created by Graeme McGaughey and Kyle Sung\n"
+            f"Running {ir.get_model()[7:-4]}\n\n"
+            f"-- Starting GUI --"
+    )
     
     gui.main() # initialize GUI
+
+    print(f"-- Ending Program --")
 
 
 
