@@ -29,8 +29,8 @@ To get started with the project, follow these steps:
 
 1. Clone this repository to your local machine using the following command:
 
-   ```bash
-   git clone https://github.com/gmcga/image_recognizer.git
+  ```bash
+  git clone https://github.com/gmcga/image_recognizer.git
   ```
 
 
@@ -38,8 +38,7 @@ To get started with the project, follow these steps:
 2. Install the required dependencies:
 
   ```bash
-
-    pip install -r installation/requirements.txt
+  pip install -r installation/requirements.txt
   ```
 
 
