@@ -2,7 +2,7 @@
 
 def play_sound():
     import winsound
-    duration = 330 #ms
+    duration = 350 #ms
     frequency = 440
     for _ in range(4):
         winsound.Beep(frequency, duration)

@@ -105,7 +105,8 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
             print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
 
             if running_loss / len(dataloader) < 0.1:
-                break
+                #break
+                pass
 
         except KeyboardInterrupt: # if you want to end training early
             break
@@ -191,7 +192,7 @@ def get_model(do_train = None):
         return "models/model27.pth" ############### NOTE: PUT MODEL NAME HERE
     
     else:
-        return "models/model26.pth" # Testing
+        return "models/model27.pth" # Testing
 
 
 
@@ -201,7 +202,7 @@ if __name__ == "__main__":
     import time ; start = time.time()
 
 
-    main(do_train_model = True)
+    main(do_train_model = False)
     
     
     end = time.time() ; print("Time:", end - start) ; aux.play_sound()
