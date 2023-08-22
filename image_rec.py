@@ -209,8 +209,7 @@ def get_model(do_train = None):
 
 
 
-def CURRENT_MODEL():
-    return 28
+CURRENT_MODEL = lambda: 28 ## PUT CURRENT MODEL HERE
 
 
 
