@@ -221,7 +221,7 @@ if __name__ == "__main__":
     import time ; start = time.time()
 
 
-    main(do_train_model = True)
+    main(do_train_model = False)
     
     
     end = time.time() ; print("Time:", end - start) ; aux.play_sound()
