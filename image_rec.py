@@ -189,15 +189,30 @@ def main(do_train_model):
 
 
 
-
-
 def get_model(do_train = None):
 
     if do_train:
-        return "models/model29.pth" ############### NOTE: PUT MODEL NAME HERE
+        
+        model_num = CURRENT_MODEL()
+
+        while os.path.exists(f"models/model{model_num}.pth"):
+            model_num += 1
+
+        return f"models/model{model_num}.pth" ############### NOTE: PUT MODEL NAME HERE
     
     else:
-        return "models/model28.pth" # Predictions
+        return f"models/model{CURRENT_MODEL()}.pth" # Predictions
+
+
+
+
+
+
+
+def CURRENT_MODEL():
+    return 28
+
+
 
 
 
@@ -207,7 +222,7 @@ if __name__ == "__main__":
     import time ; start = time.time()
 
 
-    main(do_train_model = False)
+    main(do_train_model = True)
     
     
     end = time.time() ; print("Time:", end - start) ; aux.play_sound()
