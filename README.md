@@ -1,45 +1,32 @@
-# Image Digit Recognition Neural Network
+# Image Recognition: Digits
 
-Welcome to the Image Digit Recognition Neural Network repository! This project focuses on developing a neural network that can accurately identify handwritten digits from images. The neural network architecture employed here is designed to process and classify images of digits (0-9) using machine learning techniques.
+Welcome to the Image Recognition repository! This project focuses on developing a neural network that can identify handwritten digits from images, as well as a GUI build in to handwrite digits. The neural network is designed to process and classify images of digits (0-9) using machine learning techniques.
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
+- [Installation and Usage](#installation-and-usage)
 - [Dataset](#dataset)
 - [Neural Network Architecture](#neural-network-architecture)
-- [Training](#training)
-- [Testing and Evaluation](#testing-and-evaluation)
-- [Usage](#usage)
 - [License](#license)
 - [Contributing](#contributing)
 
 
-## Introduction
 
-The purpose of this project is to demonstrate the process of building and training a neural network to recognize and classify handwritten digits from images. Handwritten digit recognition has applications in various fields, such as digitized document processing, postal automation, and more. This repository serves as a guide to implementing a simple digit recognition system using Python and popular machine learning libraries.
-
-
-
-## Getting Started
+## Installation and Usage
 
 To get started with the project, follow these steps:
 
 1. Clone this repository to your local machine:
-
   ```bash
   git clone https://github.com/gmcga/image_recognizer.git
   ```
 
-
 2. Install the required dependencies:
-
   ```bash
   pip install -r installation/requirements.txt
   ```
 
 3. Run ``main.py``
-
   ```bash
   python main.py
   ```
@@ -47,9 +34,18 @@ To get started with the project, follow these steps:
 
 ## Dataset
 
+Please view the training and testing dataset in the repo:
+'''bash
+cd fig_train
+cd fig_test
+'''
+
 ## Neural Network Architecture
+Current parameters (subject to change):
+- Single layer
 
 ## License
+Currently none, please cite this project if you plan to use the software
 
 
 ## Contributing
@@ -58,9 +54,7 @@ We welcome contributions to improve and expand this project. If you find any iss
 
 
 
-
-
-Feel free to explore, experiment, and learn from this project. Happy coding!
+Explore, experiment, and learn. Happy coding!
 
 Maintainers:
 - Kyle Sung
