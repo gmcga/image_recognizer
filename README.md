@@ -35,10 +35,10 @@ To get started with the project, follow these steps:
 ## Dataset
 
 Please view the training and testing dataset in the repo:
-'''bash
+```bash
 cd fig_train
 cd fig_test
-'''
+```
 
 ## Neural Network Architecture
 Current parameters (subject to change):
