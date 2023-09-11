@@ -12,7 +12,6 @@ import torch
 import torchvision as tv
 
 
-
 MODEL_NUMBER = ir.get_model().split('_')[0].replace("models/model", "").replace(".pth", "")
 
 
@@ -20,9 +19,8 @@ class ImageRec:
 
     def __init__(self, root):
         self.root = root
-        
+    
         self.root.title("Image Recognizer")
-
         
 
         # Set window size
@@ -37,11 +35,11 @@ class ImageRec:
         self.tips_label = tk.Label(root, text="For best results, draw slow, large, and in the centre of the canvas.")
         self.tips_label.pack() 
 
-        # Create canvas:
+        # Create canvas
         self.canvas = tk.Canvas(root, width=280, height=280, bg="white", highlightbackground="black", highlightthickness=4)
         self.canvas.pack()
 
-        # Bind LMB movement to canvas, call draw method:
+        # Bind LMB movement to canvas, call draw method
         self.canvas.bind("<B1-Motion>", self.draw)
 
         # Button frame to hold the buttons
@@ -85,11 +83,13 @@ class ImageRec:
         self.image = Image.new("RGB", (280, 280), "white")
         self.draw = ImageDraw.Draw(self.image)
 
+    
     def toggle_eraser(self):
         self.draw_colour = "white"
         self.erase_button.config(relief="sunken")
         self.pen_button.config(relief="raised")
 
+    
     def toggle_pen(self):
         self.draw_colour = "black"
         self.pen_button.config(relief="sunken")
@@ -102,13 +102,13 @@ class ImageRec:
         self.draw = ImageDraw.Draw(self.image)  # Create a new ImageDraw object
 
 
-
     def draw(self, event):
         radius = self.radius_slider.get()
         
         # Draw on the tk image canvas
         x, y = event.x, event.y
         self.canvas.create_oval(x + radius, y + radius, x - radius, y - radius, fill=self.draw_colour, outline=self.draw_colour)
+        
         # Draw on the PIL image
         pil_x0 = x - radius
         pil_y0 = y - radius
@@ -116,7 +116,7 @@ class ImageRec:
         pil_y1 = y + radius
         self.draw.ellipse((pil_x0, pil_y0, pil_x1, pil_y1), fill=self.draw_colour)
 
-        # Automatically guess image after drawing:
+        # Automatically guess image after drawing
         self.guess_image()
 
 
@@ -137,6 +137,7 @@ class ImageRec:
             tv.transforms.ToTensor(),
             tv.transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
         ])
+        
         image_tensor = transform(pil_image)
         image_tensor = image_tensor.unsqueeze(0)  # Add batch dimension
 
@@ -152,17 +153,13 @@ class ImageRec:
         self.guess_label.config(text=f"MODEL THINKS: {predicted_class}")
 
 
-
-
 def main():
 
     root = tk.Tk()
 
-    
     app = ImageRec(root)
 
     root.mainloop()
-
 
 
 if __name__ == "__main__":
