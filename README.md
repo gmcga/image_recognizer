@@ -1,6 +1,6 @@
 # Image Recognition: Digits
 
-![](demonstration_images\demoimage2.png)
+![](demonstration_images/demoimage2.png)
 
 Welcome to the Image Recognition repository! This project focuses on developing a neural network that can identify handwritten digits from images, as well as a GUI built in to handwrite digits. The neural network is designed to process and classify images of digits (0-9) using machine learning techniques.
 
@@ -42,7 +42,7 @@ To get started with the project, follow these steps:
 
 We welcome contributions to improve and expand this project. If you find any issues or have ideas for enhancements, feel free to create issues or pull requests in this repository.
 
-License: 
+License: no license currently; please credit us if you plan to use our code in your own project.
 
 
 Explore, experiment, and learn. Happy coding!
