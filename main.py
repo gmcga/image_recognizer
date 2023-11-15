@@ -3,18 +3,29 @@
 ## Description: Main file for Image Recognizer ML Software
 
 
+
 # IMPORTS
 
 import image_rec as ir
 import gui
 
 
+
 # FUNCTION DEFINITIONS
 
 def main():
-    print(f"Running {ir.get_model()}")
-    print("--Starting GUI--")
-    gui.main()
+
+    print()
+    print(  f"ML Image Recognizer\n"
+            f"Created by Graeme McGaughey and Kyle Sung\n"
+            f"Running {ir.get_model()[7:-4]}\n\n"
+            f"-- Starting GUI --"
+    )
+    
+    gui.main() # initialize GUI
+
+    print(f"-- Ending Program --")
+
 
 
 # SCRIPT

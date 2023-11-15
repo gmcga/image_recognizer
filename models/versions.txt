@@ -1,46 +1,19 @@
-model 8
+model 30 (45/90)
 - BS: 32
-- Score: 18 / 30
 
-model 9
-- BS: 16
-- Score: 16 / 30
-
-model 10
-- BS: 25
-- Score: 17 / 30
-
-model 11
-- BS: 45
-- Score: 16 / 30
-
-model 13
+model 29 (46 / 90)
 - BS: 32
-- Score: 20 / 30
 
-model 14
+
+model 28 (52 / 90) [run to almost 1000 epochs]
 - BS: 32
-- Score: 20 / 30
 
-model 15
-- BS: 32
-- Score: 24 / 40
 
-model 16
-- BS: 36
-- Score: 25 / 40 
+model 27 (47 / 90)
 
-model 17
-- BS: 32
-- Score: 24 / 40
+model 26 (46 / 90)
 
-model 18
-- BS: 32
-- Score: 24 / 40
+model 25 (47 / 90)
 
-model 19
-- BS: 32
-- Score: 24/40
 
-model 20
-- BS: 
+

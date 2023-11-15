@@ -105,7 +105,10 @@ def train_save_model(n_iterations, data_folder = "./fig_train"):
             print(f"Epoch {epoch+1}, Loss: {running_loss / len(dataloader)}")
 
             if running_loss / len(dataloader) < 0.1:
-                break
+
+                #break # break ends if a certain threshold is reached
+
+                pass # pass only ends on keyboard interrupt
 
         except KeyboardInterrupt: # if you want to end training early
             break
@@ -153,15 +156,18 @@ def test(do_train_model):
 
     string = ""
 
-    Js = ["", "a", "b", "c", "d"]
+    Js = [''] + [i for i in 'abcdefgh']
 
     for i in range(10):
         for j in Js:
-            guess = load_and_predict(f"./fig_test/test{i}{j}.png", do_train = do_train_model)
+            try:
+                guess = load_and_predict(f"./fig_test/test{i}{j}.png", do_train = do_train_model)
 
-            string += f"Actual: {i}, Model: {guess}\n"
+                string += f"Actual: {i}, Model: {guess}\n"
 
-            correct += int(i == guess)
+                correct += int(i == guess)
+            except:
+                pass
         
         string += "\n"
 
@@ -183,15 +189,29 @@ def main(do_train_model):
 
 
 
-
-
 def get_model(do_train = None):
 
     if do_train:
-        return "models/model27.pth" ############### NOTE: PUT MODEL NAME HERE
+        
+        model_num = CURRENT_MODEL()
+
+        while os.path.exists(f"models/model{model_num}.pth"):
+            model_num += 1
+
+        return f"models/model{model_num}.pth" ############### NOTE: PUT MODEL NAME HERE
     
     else:
-        return "models/model26.pth" # Testing
+        return f"models/model{CURRENT_MODEL()}.pth" # Predictions
+
+
+
+
+
+
+
+CURRENT_MODEL = lambda: 28 ## PUT CURRENT MODEL HERE
+
+
 
 
 
@@ -201,7 +221,7 @@ if __name__ == "__main__":
     import time ; start = time.time()
 
 
-    main(do_train_model = True)
+    main(do_train_model = False)
     
     
     end = time.time() ; print("Time:", end - start) ; aux.play_sound()
