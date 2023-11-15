@@ -35,7 +35,7 @@ To get started with the project, follow these steps:
 3. Run ``main.py``
   ```bash
 
-    pip install -r requirements.txt
+  python main.py
   ```
 
 
