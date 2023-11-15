@@ -6,15 +6,11 @@ Welcome to the Image Digit Recognition Neural Network repository! This project f
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Getting Started](#getting-started)
-- [Dataset](#dataset)
-- [Neural Network Architecture](#neural-network-architecture)
-- [Training](#training)
-- [Testing and Evaluation](#testing-and-evaluation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+- [Image Digit Recognition Neural Network](#image-digit-recognition-neural-network)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Getting Started](#getting-started)
+  - [Contributing](#contributing)
 
 ## Introduction
 
@@ -44,10 +40,11 @@ To get started with the project, follow these steps:
 
 
 
-Contributing
+## Contributing
 
 We welcome contributions to improve and expand this project. If you find any issues or have ideas for enhancements, feel free to create issues or pull requests in this repository.
-License
+
+License: 
 
 
 Feel free to explore, experiment, and learn from this project. Happy coding!

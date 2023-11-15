@@ -1,4 +1,4 @@
-
+# for testing purposes - play a sound when training is complete
 
 def play_sound():
     import winsound

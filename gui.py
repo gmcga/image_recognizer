@@ -20,11 +20,9 @@ class ImageRec:
 
     def __init__(self, root):
         self.root = root
-        
         self.root.title("Image Recognizer")
 
         
-
         # Set window size
         WINDOW_WIDTH = 500
         WINDOW_HEIGHT = 580
@@ -85,10 +83,12 @@ class ImageRec:
         self.image = Image.new("RGB", (280, 280), "white")
         self.draw = ImageDraw.Draw(self.image)
 
+
     def toggle_eraser(self):
         self.draw_colour = "white"
         self.erase_button.config(relief="sunken")
         self.pen_button.config(relief="raised")
+
 
     def toggle_pen(self):
         self.draw_colour = "black"
@@ -100,7 +100,6 @@ class ImageRec:
         self.canvas.delete("all") # Clear tkinter canvas
         self.image = Image.new("RGB", (280, 280), "white")  # Clear PIL image
         self.draw = ImageDraw.Draw(self.image)  # Create a new ImageDraw object
-
 
 
     def draw(self, event):
