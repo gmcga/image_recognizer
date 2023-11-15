@@ -1,8 +1,8 @@
 # Image Recognition: Digits
 
 <div style="display: flex; flex-direction: row;">
-  <img src="demonstration_images/demoimage2.png" width="350" style="margin-right: 20px;">
-  <img src="demonstration_images/demoimage8.png" width="350">
+  <img src="demonstration_images/demoimage2.png" width="350" height="425" style="margin-right: 20px;">
+  <img src="demonstration_images/demoimage8.png" width="350" height="425">
 </div>
 
 
